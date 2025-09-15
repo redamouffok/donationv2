@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  database:
+    image: postgres:15
+    container_name: donations_db
+    environment:
+      POSTGRES_DB: donations_db
+      POSTGRES_USER: donations_user
+      POSTGRES_PASSWORD: donations_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - donations_network
+
+  backend:
+    build: ./backend
+    container_name: donations_backend
+    ports:
+      - "3001:3001"
+    environment:
+      DB_HOST: database
+      DB_PORT: 5432
+      DB_NAME: donations_db
+      DB_USER: donations_user
+      DB_PASSWORD: donations_password
+      JWT_SECRET: your_jwt_secret_key_here
+    depends_on:
+      - database
+    networks:
+      - donations_network
+
+  frontend:
+    build: ./frontend
+    container_name: donations_frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - donations_network
+
+volumes:
+  postgres_data:
+
+networks:
+  donations_network:
+    driver: bridge
