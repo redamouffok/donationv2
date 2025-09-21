@@ -33,68 +33,59 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        <div className="text-center">
-          <h2 className="mt-6 text-3xl font-bold text-gray-900">
+    <div className="login-container">
+      <div className="login-card">
+        <div className="login-header">
+          <div className="text-5xl mb-6">💚</div>
+          <h1 className="login-title">
             Gestion des Donations
-          </h2>
-          <p className="mt-2 text-sm text-gray-600">
+          </h1>
+          <p className="login-subtitle">
             Connectez-vous à votre compte
           </p>
         </div>
         
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          <div className="card">
-            <div className="space-y-4">
-              <div>
-                <label htmlFor="username" className="form-label">
-                  Nom d'utilisateur
-                </label>
-                <input
-                  id="username"
-                  name="username"
-                  type="text"
-                  required
-                  className="form-input"
-                  placeholder="Entrez votre nom d'utilisateur"
-                  value={formData.username}
-                  onChange={handleChange}
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="password" className="form-label">
-                  Mot de passe
-                </label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  required
-                  className="form-input"
-                  placeholder="Entrez votre mot de passe"
-                  value={formData.password}
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-            
-            <div className="mt-6">
-              <button
-                type="submit"
-                disabled={loading}
-                className="btn btn-primary w-full"
-              >
-                {loading ? 'Connexion...' : 'Se connecter'}
-              </button>
-            </div>
+        <form className="login-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="username" className="form-label">
+              Nom d'utilisateur
+            </label>
+            <input
+              id="username"
+              name="username"
+              type="text"
+              required
+              className="form-input"
+              placeholder="Entrez votre nom d'utilisateur"
+              value={formData.username}
+              onChange={handleChange}
+            />
           </div>
           
-          <div className="text-center">
-            <p className="text-sm text-gray-600">
-              Compte par défaut : <strong>admin</strong> / <strong>admin123</strong>
-            </p>
+          <div className="form-group">
+            <label htmlFor="password" className="form-label">
+              Mot de passe
+            </label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              required
+              className="form-input"
+              placeholder="Entrez votre mot de passe"
+              value={formData.password}
+              onChange={handleChange}
+            />
+          </div>
+          
+          <div className="mt-8">
+            <button
+              type="submit"
+              disabled={loading}
+              className="btn btn-primary btn-lg w-full"
+            >
+              {loading ? 'Connexion...' : 'Se connecter'}
+            </button>
           </div>
         </form>
       </div>

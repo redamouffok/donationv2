@@ -7,7 +7,7 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import AddDonation from './components/AddDonation';
 import History from './components/History';
-import Navbar from './components/Navbar';
+import ModernNavbar from './components/ModernNavbar';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 
 function AppContent() {
@@ -27,8 +27,8 @@ function AppContent() {
   return (
     <Router>
       <div className="min-h-screen bg-gray-50">
-        {isAuthenticated && <Navbar />}
-        <main className={isAuthenticated ? 'pt-16' : ''}>
+        {isAuthenticated && <ModernNavbar />}
+        <main className={isAuthenticated ? 'main-content' : ''}>
           <Routes>
             <Route 
               path="/login" 

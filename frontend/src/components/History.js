@@ -87,20 +87,20 @@ const History = () => {
   }
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="container mx-auto p-4 md:p-6">
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">
+        <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
           Historique des donations
         </h1>
-        <p className="text-gray-600">
+        <p className="text-gray-600 text-sm md:text-base">
           Consultez l'historique des donations par jour
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
         {/* History List */}
         <div className="card">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">
+          <h2 className="text-lg md:text-xl font-semibold text-gray-900 mb-4">
             Résumé par jour
           </h2>
           
@@ -109,24 +109,24 @@ const History = () => {
               {history.map((day, index) => (
                 <div
                   key={index}
-                  className={`p-4 rounded-lg border cursor-pointer transition-colors ${
+                  className={`p-3 rounded-lg border cursor-pointer transition-all duration-200 ${
                     selectedDate === day.date
-                      ? 'bg-green-50 border-green-200'
-                      : 'bg-gray-50 border-gray-200 hover:bg-gray-100'
+                      ? 'bg-green-50 border-green-200 shadow-sm'
+                      : 'bg-gray-50 border-gray-200 hover:bg-gray-100 hover:shadow-sm'
                   }`}
                   onClick={() => handleDateClick(day.date)}
                 >
                   <div className="flex justify-between items-center">
-                    <div>
-                      <p className="font-medium text-gray-900">
+                    <div className="flex-1 min-w-0">
+                      <p className="font-medium text-gray-900 text-sm md:text-base">
                         {formatDate(day.date)}
                       </p>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-xs md:text-sm text-gray-600">
                         {day.donation_count} donation{day.donation_count > 1 ? 's' : ''}
                       </p>
                     </div>
-                    <div className="text-right">
-                      <p className="font-bold text-green-600">
+                    <div className="text-right ml-2">
+                      <p className="font-bold text-green-600 text-sm md:text-base">
                         {formatCurrency(day.total_amount)}
                       </p>
                     </div>
@@ -136,7 +136,7 @@ const History = () => {
             </div>
           ) : (
             <div className="text-center py-8">
-              <div className="text-4xl mb-2">📅</div>
+              <div className="text-4xl mb-2 opacity-50">📅</div>
               <p className="text-gray-500">Aucun historique disponible</p>
             </div>
           )}
@@ -144,7 +144,7 @@ const History = () => {
 
         {/* Donations for Selected Date */}
         <div className="card">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">
+          <h2 className="text-lg md:text-xl font-semibold text-gray-900 mb-4">
             {selectedDate ? `Donations du ${formatDate(selectedDate)}` : 'Sélectionnez une date'}
           </h2>
           
@@ -155,16 +155,16 @@ const History = () => {
                 <p className="text-gray-600">Chargement...</p>
               </div>
             ) : donationsForDate.length > 0 ? (
-              <div className="space-y-3 max-h-96 overflow-y-auto">
+              <div className="space-y-2 max-h-96 overflow-y-auto">
                 {donationsForDate.map((donation) => (
-                  <div key={donation.id} className="p-3 bg-gray-50 rounded-lg border">
+                  <div key={donation.id} className="p-3 bg-gray-50 rounded-lg border hover:bg-gray-100 transition-colors">
                     <div className="flex justify-between items-start">
-                      <div className="flex-1">
-                        <p className="font-medium text-gray-900">{donation.donor_name}</p>
-                        <p className="text-sm text-gray-600">{donation.project_name}</p>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-medium text-gray-900 text-sm md:text-base truncate">{donation.donor_name}</p>
+                        <p className="text-xs md:text-sm text-gray-600 truncate">{donation.project_name}</p>
                       </div>
-                      <div className="text-right">
-                        <p className="font-bold text-green-600">
+                      <div className="text-right ml-2">
+                        <p className="font-bold text-green-600 text-sm md:text-base">
                           {formatCurrency(donation.amount)}
                         </p>
                         <p className="text-xs text-gray-500">
@@ -177,13 +177,13 @@ const History = () => {
               </div>
             ) : (
               <div className="text-center py-8">
-                <div className="text-4xl mb-2">📝</div>
+                <div className="text-4xl mb-2 opacity-50">📝</div>
                 <p className="text-gray-500">Aucune donation ce jour</p>
               </div>
             )
           ) : (
             <div className="text-center py-8">
-              <div className="text-4xl mb-2">👆</div>
+              <div className="text-4xl mb-2 opacity-50">👆</div>
               <p className="text-gray-500">Cliquez sur une date pour voir les détails</p>
             </div>
           )}

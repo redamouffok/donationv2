@@ -69,10 +69,13 @@ const initDatabase = async () => {
     if (parseInt(projectsExist.rows[0].count) === 0) {
       await pool.query(`
         INSERT INTO projects (name, description) VALUES 
-        ('Aide aux familles démunies', 'Soutien financier pour les familles en difficulté'),
-        ('Éducation des enfants', 'Financement de la scolarité et du matériel éducatif'),
-        ('Soins médicaux', 'Aide pour les soins de santé des plus démunis'),
-        ('Urgences', 'Fonds d''urgence pour les situations critiques')
+        ('بشرى الصابرين', 'دعم معنوي وروحي للمرضى والمحتاجين'),
+        ('سقياء الماء', 'توفير المياه النظيفة للمناطق المحتاجة'),
+        ('كفالة الايتام', 'رعاية شاملة للأيتام وتوفير احتياجاتهم'),
+        ('وجبات غذائية', 'توزيع الوجبات الغذائية على الفقراء والمحتاجين'),
+        ('عقائق', 'بناء المساجد والمؤسسات الدينية'),
+        ('حفر الأبار', 'حفر الآبار لتوفير المياه في المناطق النائية'),
+        ('أخرى', 'مشاريع خيرية أخرى متنوعة')
       `);
     }
 
